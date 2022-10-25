@@ -1,10 +1,12 @@
 package models
 
+import "time"
+
 type Comment struct {
-	Id        int    `json:"id" gorm:"primary_key"`
-	UserId    int    `json:"user_id" gorm:"foreign_key"`
-	PhotoId   int    `json:"photo_id" gorm:"foreign_key"`
-	Message   string `json:"message"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
+	Id        uint       `json:"id" gorm:"primary_key"`
+	UserId    uint       `json:"user_id" gorm:"foreign_key"`
+	PhotoId   uint       `json:"photo_id" gorm:"foreign_key"`
+	Message   string     `json:"message" gorm:"not null"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
