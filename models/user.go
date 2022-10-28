@@ -9,13 +9,13 @@ import (
 )
 
 type User struct {
-	Id        uint       `json:"id" gorm:"primary_key"`
+	Id        uint       `json:"-" gorm:"primary_key"`
 	Username  string     `json:"username" gorm:"unique;not null"`
 	Email     string     `json:"email" gorm:"unique;not null"`
-	Password  string     `json:"password" gorm:"not null"`
-	Age       int        `json:"age" gorm:"not null"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	Password  string     `json:"-" gorm:"not null"`
+	Age       uint       `json:"-"`
+	CreatedAt *time.Time `json:"-"`
+	UpdatedAt *time.Time `json:"-"`
 }
 
 func (u *User) BeforeCreate(tx *gorm.DB) (err error) {

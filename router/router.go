@@ -3,6 +3,9 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/rama4zis/go-mygram-aplication/controllers/commentcontroller"
+	"github.com/rama4zis/go-mygram-aplication/controllers/socialmediacontroller"
+
+	"github.com/rama4zis/go-mygram-aplication/controllers/photocontroller"
 	"github.com/rama4zis/go-mygram-aplication/controllers/usercontroller"
 	"github.com/rama4zis/go-mygram-aplication/middlewares"
 )
@@ -10,17 +13,39 @@ import (
 func StartApp() *gin.Engine {
 	r := gin.Default()
 
-	userRouter := r.Group("/users")
+	usersRouter := r.Group("/users")
 	{
-		userRouter.POST("/register", usercontroller.Register)
-		userRouter.POST("/login", usercontroller.Login)
+		usersRouter.POST("/register", usercontroller.Register)
+		usersRouter.POST("/login", usercontroller.Login)
+		usersRouter.PUT("/", middlewares.Authentication(), usercontroller.Update)
+		usersRouter.DELETE("/", middlewares.Authentication(), usercontroller.Delete)
 
 	}
 
-	commentRouter := r.Group("/comments")
+	photosRouter := r.Group("/photos")
 	{
-		commentRouter.Use(middlewares.Authentication())
-		commentRouter.POST("/", commentcontroller.CreateComment)
+		photosRouter.Use(middlewares.Authentication())
+		photosRouter.POST("/", middlewares.Authentication(), photocontroller.CreatePhoto)
+		photosRouter.PUT(("/:photoId"), middlewares.Authentication(), photocontroller.UpdatePhoto)
+		photosRouter.DELETE(("/:photoId"), middlewares.Authentication(), photocontroller.DeletePhoto)
+
+		photosRouter.GET("/", photocontroller.GetAllPhotos)
+	}
+
+	commentsRouter := r.Group("/comments")
+	{
+		commentsRouter.Use(middlewares.Authentication())
+		commentsRouter.POST("/", commentcontroller.CreateComment)
+		commentsRouter.PUT(("/:commentId"), middlewares.Authentication(), commentcontroller.UpdateComment)
+		commentsRouter.DELETE(("/:commentId"), middlewares.Authentication(), commentcontroller.DeleteComment)
+	}
+
+	socialMediaRouter := r.Group("/socialmedias")
+	{
+		socialMediaRouter.POST("/", middlewares.Authentication(), socialmediacontroller.CreateSocialMedia)
+		socialMediaRouter.PUT(("/:socialMediaId"), middlewares.Authentication(), socialmediacontroller.UpdateSocialMedia)
+
+		socialMediaRouter.GET("/", middlewares.Authentication(), socialmediacontroller.GetAllSocialMedias)
 	}
 
 	return r

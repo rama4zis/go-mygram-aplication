@@ -3,6 +3,7 @@ package usercontroller
 import (
 	"net/http"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/rama4zis/go-mygram-aplication/helpers"
 	"github.com/rama4zis/go-mygram-aplication/models"
@@ -49,11 +50,17 @@ func Register(c *gin.Context) {
 		c.ShouldBind(&User)
 	}
 
+	// turn user age to int
+	User.Age = uint(User.Age)
+
+	// Create User
+	User = models.User{Email: User.Email, Username: User.Username, Password: User.Password, Age: User.Age}
 	err := db.Debug().Create(&User).Error
 
 	if err != nil {
 		c.JSON(500, gin.H{
 			"message": "Failed to create user!",
+			"error":   err,
 		})
 		return
 	}
@@ -101,7 +108,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	token := helpers.GenerateToken(User.Id, User.Username, User.Email)
+	token := helpers.GenerateToken(User.Id, User.Email)
 
 	c.JSON(http.StatusOK, gin.H{
 		"token": token,
@@ -109,41 +116,58 @@ func Login(c *gin.Context) {
 }
 
 func Update(c *gin.Context) {
-	// get userId from authotization header
-	userId := c.MustGet("userId").(float64)
+	db := models.DB
 
-	// get user from database
-	var user models.User
-	result := models.DB.First(&user, userId)
-	if result.Error != nil {
+	userData := c.MustGet("userData").((jwt.MapClaims))
+	contentType := helpers.GetContentType(c)
+	_, _ = db, contentType
+	User := models.User{}
+	userId := uint(userData["id"].(float64))
+
+	if contentType == "application/json" {
+		c.ShouldBindJSON(&User)
+	} else {
+		c.ShouldBind(&User)
+	}
+
+	User.Id = userId
+	// User = models.User{Email: User.Email, Username: User.Username}
+	err := db.Debug().Model(&User).Where("id = ?", userId).Updates(User).Error
+	if err != nil {
 		c.JSON(500, gin.H{
-			"message": "Failed to fetch user!",
+			"message": "Failed to update user!",
+			"error":   err,
 		})
 		return
 	}
 
-	// get user input
-	contentType := helpers.GetContentType(c)
-	if contentType == "application/json" {
-		c.ShouldBindJSON(&user)
-	} else {
-		c.ShouldBind(&user)
-	}
+	userUpdate := models.User{}
+	db.Debug().Where("id = ?", userId).Take(&userUpdate)
 
-	// update user
-	result = models.DB.Save(&user)
+	c.JSON(200, gin.H{
+		"id":         userUpdate.Id,
+		"email":      userUpdate.Email,
+		"username":   userUpdate.Username,
+		"age":        userUpdate.Age,
+		"updated_at": userUpdate.UpdatedAt,
+	})
+}
+
+func Delete(c *gin.Context) {
+	var user models.User
+	userData := c.MustGet("userData").((jwt.MapClaims))
+	userId := uint(userData["id"].(float64))
+
+	result := models.DB.Delete(&user, userId)
 	if result.Error != nil {
 		c.JSON(500, gin.H{
-			"message": "Failed to update user!",
+			"message": "Failed to delete user!",
 		})
 		return
 	}
 
 	c.JSON(200, gin.H{
-		"id":         user.Id,
-		"email":      user.Email,
-		"username":   user.Username,
-		"age":        user.Age,
-		"updated_at": user.UpdatedAt,
+		"data": "User deleted!",
 	})
+
 }
