@@ -1,0 +1,626 @@
+{
+	"info": {
+		"_postman_id": "0f329519-d1de-429b-9292-810eac8f4429",
+		"name": "GramGo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7713184"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "localhost:8080/users/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Age",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "rama@yahoo.com",
+									"type": "text"
+								},
+								{
+									"key": "Username",
+									"value": "rama",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Age",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "rama@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "Username",
+									"value": "rama2",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Email",
+									"value": "rama@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Email",
+									"value": "rama2@yahoo.coms",
+									"type": "text"
+								},
+								{
+									"key": "Username",
+									"value": "ramayahoo2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/users/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjJ9.ItxiPYdvwlhz5Lggw300LKoQmn9d0CuJQnQGPWWjZK8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Photos",
+			"item": [
+				{
+					"name": "localhost:8080/photos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Title",
+									"value": "Photo Pertama",
+									"type": "text"
+								},
+								{
+									"key": "Caption",
+									"value": "Ini foto yang saya upload",
+									"type": "text"
+								},
+								{
+									"key": "PhotoUrl",
+									"value": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Character_Tartaglia_Thumb.png",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/photos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"photos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/photos/2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":   \"Photo pertama tapi versi edit yang ke 2\",\r\n    \"caption\":  \"Ini adalah Photo pertamakali yang diupload versi edit 2\",\r\n    \"photo_url\":    \"https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/09/Character_Tartaglia_Thumb.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/photos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"photos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/photos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/photos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"photos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/photos/3",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/photos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"photos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "localhost:8080/comments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Message",
+									"value": "Mantab ke berapa",
+									"type": "text"
+								},
+								{
+									"key": "PhotoId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/comments",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/comments/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Message",
+									"value": "Komentar telah diedit",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/comments/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/comments/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:8080/comments/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SocialMedia",
+			"item": [
+				{
+					"name": "localhost:8080/socialmedias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "Facebook",
+									"type": "text"
+								},
+								{
+									"key": "SocialMediaUrl",
+									"value": "facebook.com/rama4zis",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/socialmedias",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socialmedias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/socialmedias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/socialmedias",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socialmedias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/socialmedias/3",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Name",
+									"value": "Twitter",
+									"type": "text"
+								},
+								{
+									"key": "SocialMediaUrl",
+									"value": "instagram.com/rama4zis",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/socialmedias/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socialmedias",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/socialmedias/6",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbWFAZ21haWwuY29tIiwiaWQiOjF9.OLm_pzbwcKuuJTr_qnyAqHKJqloN0ebwNeKG3e63QrY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/socialmedias/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"socialmedias",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
