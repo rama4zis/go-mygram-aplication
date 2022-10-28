@@ -2,6 +2,15 @@
 
 Aplikasi API Instagram sederhana menggunakan Golang
 
+## Database Configuration
+1.  PostgreSQL
+2.  Database Name: mygram
+3.  Database User: postgres
+4.  Database Password: root
+5.  Database Port: 5432
+
+[!] You can change the database configuration in the file models/setup.go
+
 ## How to run
 ```bash
 go mod tidy
