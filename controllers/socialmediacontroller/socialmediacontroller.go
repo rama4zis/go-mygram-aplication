@@ -98,10 +98,7 @@ func GetAllSocialMedias(c *gin.Context) {
 func UpdateSocialMedia(c *gin.Context) {
 	var socialMedia models.SocialMedia
 	db := models.DB
-	socialMediaId := c.Param("socialMediaId")
-	// turn string to uint model
-	var socialMediaIdUint uint
-	socialMediaIdUint = helpers.StringToUint(socialMediaId)
+	// socialMediaId := c.Param("id")
 
 	contentType := helpers.GetContentType(c)
 	_, _ = db, contentType
@@ -111,8 +108,6 @@ func UpdateSocialMedia(c *gin.Context) {
 	} else {
 		c.ShouldBind(&socialMedia)
 	}
-
-	socialMedia.Id = socialMediaIdUint
 
 	c.JSON(http.StatusOK, gin.H{"data": socialMedia})
 	return
