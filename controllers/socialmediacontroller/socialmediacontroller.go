@@ -96,42 +96,76 @@ func GetAllSocialMedias(c *gin.Context) {
 }
 
 func UpdateSocialMedia(c *gin.Context) {
-	var socialMedia models.SocialMedia
+	socialMediaId := c.Param("socialMediaId")
 	db := models.DB
-	// socialMediaId := c.Param("id")
+	var SocialMedia models.SocialMedia
 
-	contentType := helpers.GetContentType(c)
-	_, _ = db, contentType
-
-	if contentType == "application/json" {
-		c.ShouldBindJSON(&socialMedia)
-	} else {
-		c.ShouldBind(&socialMedia)
+	// check if social media exist
+	err := db.Debug().First(&SocialMedia, socialMediaId).Error
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Social media not found!"})
+		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"data": socialMedia})
-	return
-
-	// set user id
+	// check if user is owner of social media
 	userData := c.MustGet("userData").(jwt.MapClaims)
 	userId := uint(userData["id"].(float64))
-	socialMedia.UserId = userId
+	if SocialMedia.UserId != userId {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "You are not authorized!"})
+		return
+	}
 
-	// Create SocialMedia
-	err := db.Debug().Save(&socialMedia).Error
+	// update social media
+	contentType := helpers.GetContentType(c)
+	if contentType == "application/json" {
+		c.ShouldBindJSON(&SocialMedia)
+	} else {
+		c.ShouldBind(&SocialMedia)
+	}
 
+	err = db.Debug().Save(&SocialMedia).Error
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
 	returnData := map[string]interface{}{
-		"id":               socialMedia.Id,
-		"name":             socialMedia.Name,
-		"social_media_url": socialMedia.SocialMediaUrl,
-		"user_id":          socialMedia.UserId,
-		"craeted_at":       socialMedia.CreatedAt,
+		"id":               SocialMedia.Id,
+		"name":             SocialMedia.Name,
+		"social_media_url": SocialMedia.SocialMediaUrl,
+		"user_id":          SocialMedia.UserId,
+		"craeted_at":       SocialMedia.CreatedAt,
 	}
 
 	c.JSON(http.StatusCreated, returnData)
+}
+
+func DeleteSocialMedia(c *gin.Context) {
+	socialMediaId := c.Param("socialMediaId")
+	db := models.DB
+	var SocialMedia models.SocialMedia
+
+	// check if social media exist
+	err := db.Debug().First(&SocialMedia, socialMediaId).Error
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Social media not found!"})
+		return
+	}
+
+	// check if user is owner of social media
+	userData := c.MustGet("userData").(jwt.MapClaims)
+	userId := uint(userData["id"].(float64))
+	if SocialMedia.UserId != userId {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "You are not authorized!"})
+		return
+	}
+
+	// delete social media
+	err = db.Debug().Delete(&SocialMedia).Error
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Your social media has been successfully deleted!"})
 }
