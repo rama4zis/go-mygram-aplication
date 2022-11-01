@@ -51,13 +51,11 @@ Register User
 *Note : username and email is unique
 ```bash
 curl --location --request POST 'http://localhost:8080/users/register' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "age": 20,
-    "email": "yourmail@mail.test",
-    "username": "yourname",
-    "password": "yourpassword"
-}'
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'Username=example' \
+--data-urlencode 'Email=yourmail' \
+--data-urlencode 'Password=yourpassword' \
+--data-urlencode 'Age=yourage'
 ```
 
 Login User
