@@ -63,11 +63,9 @@ curl --location --request POST 'http://localhost:8080/users/register' \
 Login User
 ```bash
 curl --location --request POST 'http://localhost:8080/users/login' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "username": "yourname",
-    "password": "yourpassword"
-}'
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'Email=yourMail' \
+--data-urlencode 'Password=yourPassword'
 ```
 This will return token, save it for next request
 

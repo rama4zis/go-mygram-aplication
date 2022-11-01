@@ -93,16 +93,17 @@ func Login(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{
-			"error":   "Email or password is wrong!",
+			"error":   "Email is wrong!",
 			"message": "Failed to login!",
 		})
+		return
 	}
 
 	comparePass := helpers.ComparePassword([]byte(User.Password), []byte(password))
 
 	if !comparePass {
 		c.JSON(http.StatusUnauthorized, gin.H{
-			"error":   "Email or password is wrong!",
+			"error":   "Password is wrong!",
 			"message": "Failed to login!",
 		})
 		return
