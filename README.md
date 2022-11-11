@@ -1,6 +1,6 @@
 # Golang MyGram
 
-Aplikasi API Instagram sederhana menggunakan Golang
+Aplikasi API sederhana menggunakan Golang
 
 ## Database Configuration
 1.  PostgreSQL
